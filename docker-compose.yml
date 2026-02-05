@@ -1,0 +1,23 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - ./newsletter.db:/app/newsletter.db
+    restart: unless-stopped
+
+  scheduler:
+    build: .
+    command: python -m newsletter.main schedule
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - ./newsletter.db:/app/newsletter.db
+    restart: unless-stopped
+    depends_on:
+      - web

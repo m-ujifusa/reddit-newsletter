@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="empty-state">
+    <h1>No Newsletter Yet</h1>
+    <p>Run the pipeline to generate your first newsletter:</p>
+    <pre><code>newsletter pipeline</code></pre>
+    <p>Or trigger it from the API:</p>
+    <pre><code>curl -X POST http://localhost:8000/api/pipeline/run</code></pre>
+</div>
+{% endblock %}

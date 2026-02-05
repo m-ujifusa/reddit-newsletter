@@ -1,0 +1,67 @@
+sections:
+  - key: top_story
+    title: "Top Story"
+    max_items: 1
+    categories: [news, best_practices, prompts_techniques, tools_integrations]
+    description: "The single most impactful item"
+
+  - key: news
+    title: "News & Announcements"
+    max_items: 5
+    categories: [news]
+    description: "Model releases, feature updates, product launches"
+
+  - key: best_practices
+    title: "Best Practices"
+    max_items: 5
+    categories: [best_practices]
+    description: "Configs, workflows, CLAUDE.md tips"
+
+  - key: prompts_techniques
+    title: "Prompts & Techniques"
+    max_items: 5
+    categories: [prompts_techniques]
+    description: "Notable prompts, prompt engineering approaches"
+
+  - key: tools_integrations
+    title: "Tools & Integrations"
+    max_items: 5
+    categories: [tools_integrations]
+    description: "MCP servers, extensions, plugins"
+
+  - key: community
+    title: "Community Highlights"
+    max_items: 5
+    categories: [community]
+    description: "Most discussed and debated posts"
+
+  - key: quick_links
+    title: "Quick Links"
+    max_items: 10
+    categories: [news, best_practices, prompts_techniques, tools_integrations, community]
+    description: "Honorable mentions — title plus one-liner"
+
+schedule:
+  frequency: daily
+  time: "07:00"
+  timezone: "US/Eastern"
+
+claude:
+  categorization_model: claude-sonnet-4-20250514
+  synthesis_model: claude-sonnet-4-20250514
+  max_tokens_categorization: 4096
+  max_tokens_synthesis: 4096
+
+post_limits:
+  body_max_chars: 500
+  comment_max_chars: 200
+  max_comments_per_post: 3
+
+tool_tags:
+  - claude_code
+  - copilot
+  - cursor
+  - chatgpt
+  - local_llm
+  - general
+  - mcp

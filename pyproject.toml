@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "reddit-newsletter"
+version = "0.1.0"
+description = "AI-coding subreddit newsletter with Claude-powered analysis"
+requires-python = ">=3.9"
+dependencies = [
+    "praw>=7.7",
+    "anthropic>=0.39",
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "jinja2>=3.1",
+    "sqlalchemy>=2.0",
+    "alembic>=1.14",
+    "apscheduler>=3.10",
+    "typer[all]>=0.14",
+    "pydantic>=2.10",
+    "pydantic-settings>=2.6",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0",
+    "boto3>=1.35",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+    "httpx>=0.28",
+    "ruff>=0.8",
+]
+
+[project.scripts]
+newsletter = "newsletter.main:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/newsletter"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"

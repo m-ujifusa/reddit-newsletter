@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Archive - AI Coding Newsletter{% endblock %}
+
+{% block content %}
+<div class="archive">
+    <h1>Newsletter Archive</h1>
+
+    {% if newsletters %}
+    <div class="archive-list">
+        {% for nl in newsletters %}
+        <a href="/newsletter/{{ nl.id }}" class="archive-item">
+            <h3>{{ nl.edition_title or "Untitled Edition" }}</h3>
+            <div class="archive-meta">
+                <time>{{ nl.created_at.strftime('%B %d, %Y') }}</time>
+                <span>{{ nl.post_count }} posts</span>
+                <span>{{ nl.frequency }}</span>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        {% if page > 1 %}
+        <a href="/archive?page={{ page - 1 }}" class="btn">Previous</a>
+        {% endif %}
+        <span class="page-num">Page {{ page }}</span>
+        {% if has_next %}
+        <a href="/archive?page={{ page + 1 }}" class="btn">Next</a>
+        {% endif %}
+    </div>
+    {% else %}
+    <p class="empty-msg">No newsletters yet. Run the pipeline to generate one.</p>
+    {% endif %}
+</div>
+{% endblock %}

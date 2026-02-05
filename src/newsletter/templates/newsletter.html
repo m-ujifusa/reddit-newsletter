@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}{{ newsletter.edition_title }} - AI Coding Newsletter{% endblock %}
+
+{% block content %}
+<article class="newsletter">
+    <div class="newsletter-header">
+        <h1>{{ newsletter.edition_title }}</h1>
+        <div class="meta">
+            <time>{{ newsletter.created_at.strftime('%B %d, %Y') }}</time>
+            <span class="separator">|</span>
+            <span>{{ newsletter.post_count }} posts</span>
+            <span class="separator">|</span>
+            <span class="frequency">{{ newsletter.frequency }}</span>
+        </div>
+    </div>
+
+    <div class="filters" id="filters">
+        <div class="filter-group">
+            <label>Subreddits:</label>
+            <div class="filter-chips">
+                {% for sub in all_subreddits %}
+                <button class="chip active" data-filter="subreddit" data-value="{{ sub }}">r/{{ sub }}</button>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="filter-group">
+            <label>Tools:</label>
+            <div class="filter-chips">
+                {% for tag in all_tool_tags %}
+                <button class="chip active" data-filter="tool" data-value="{{ tag }}">{{ tag }}</button>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {% for section in sections %}
+    <section class="newsletter-section" id="section-{{ section.key }}">
+        <h2>{{ section.title }}</h2>
+        {% if section.intro %}
+        <p class="section-intro">{{ section.intro }}</p>
+        {% endif %}
+
+        {% for item in section.items %}
+        <div class="newsletter-item"
+             data-subreddit="{{ item.post.subreddit }}"
+             data-tools="{{ item.post.analysis.tool_tags | join(',') if item.post.analysis and item.post.analysis.tool_tags else '' }}">
+            <h3>
+                <a href="{{ item.post.permalink }}" target="_blank" rel="noopener">
+                    {{ item.headline or item.post.title }}
+                </a>
+            </h3>
+            <p class="blurb">{{ item.blurb }}</p>
+            <div class="item-meta">
+                <span class="subreddit">r/{{ item.post.subreddit }}</span>
+                <span class="score">{{ item.post.score }} pts</span>
+                <span class="comments">{{ item.post.num_comments }} comments</span>
+                {% if item.post.analysis and item.post.analysis.tool_tags %}
+                <span class="tags">
+                    {% for tag in item.post.analysis.tool_tags %}
+                    <span class="tag">{{ tag }}</span>
+                    {% endfor %}
+                </span>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+    {% endfor %}
+</article>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/filter.js"></script>
+{% endblock %}

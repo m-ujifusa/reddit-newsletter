@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AI Coding Newsletter{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">AI Coding Newsletter</a>
+            <div class="nav-links">
+                <a href="/">Latest</a>
+                <a href="/archive">Archive</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>Powered by Reddit + Claude. Built with FastAPI.</p>
+    </footer>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

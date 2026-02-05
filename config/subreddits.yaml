@@ -1,0 +1,36 @@
+subreddits:
+  - name: ClaudeAI
+    fetch_limit: 50
+    sort: hot
+    priority: 1
+    enabled: true
+
+  - name: cursor
+    fetch_limit: 50
+    sort: hot
+    priority: 1
+    enabled: true
+
+  - name: CopilotCodex
+    fetch_limit: 30
+    sort: hot
+    priority: 2
+    enabled: true
+
+  - name: ChatGPTCoding
+    fetch_limit: 50
+    sort: hot
+    priority: 1
+    enabled: true
+
+  - name: LocalLLaMA
+    fetch_limit: 30
+    sort: hot
+    priority: 2
+    enabled: true
+
+  - name: aicoding
+    fetch_limit: 30
+    sort: hot
+    priority: 2
+    enabled: true
